@@ -1,6 +1,6 @@
-# Feather OpenAPI Spec Runner Vapor
+# Feather OpenAPI Spec Vapor
 
-The `FeatherOpenAPISpecRunnerVapor` library provides a Vapor runtime for the Feather OpenAPI Spec tool.
+The `FeatherOpenAPISpecVapor` library provides a Vapor runtime for the Feather OpenAPI Spec tool.
 
 ## Getting started
 
@@ -13,16 +13,16 @@ Use at your own risk.
 To add a dependency on the package, declare it in your `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/feather-framework/feather-openapi-spec-runner-vapor", .upToNextMinor(from: "0.1.0")),
+.package(url: "https://github.com/feather-framework/feather-openapi-spec-vapor", .upToNextMinor(from: "0.2.0")),
 ```
 
-and to your application target, add `FeatherOpenAPISpecRunnerVapor` to your dependencies:
+and to your application target, add `FeatherOpenAPISpecVapor` to your dependencies:
 
 ```swift
-.product(name: "FeatherOpenAPISpecRunnerVapor", package: "feather-openapi-spec-runner-vapor")
+.product(name: "FeatherOpenAPISpecVapor", package: "feather-openapi-spec-vapor")
 ```
 
-Example `Package.swift` file with `FeatherService` as a dependency:
+Example `Package.swift` file with `FeatherOpenAPISpecVapor` as a dependency:
 
 ```swift
 // swift-tools-version:5.9
@@ -31,11 +31,11 @@ import PackageDescription
 let package = Package(
     name: "my-application",
     dependencies: [
-        .package(url: "https://github.com/feather-framework/feather-openapi-spec-runner-vapor", .upToNextMinor(from: "0.1.0")),
+        .package(url: "https://github.com/feather-framework/feather-openapi-spec-vapor", .upToNextMinor(from: "0.2.0")),
     ],
     targets: [
         .target(name: "MyApplication", dependencies: [
-            .product(name: "FeatherOpenAPISpecRunnerVapor", package: "feather-openapi-spec-runner-vapor")
+            .product(name: "FeatherOpenAPISpecVapor", package: "feather-openapi-spec-vapor")
         ]),
         .testTarget(name: "MyApplicationTests", dependencies: [
             .target(name: "MyApplication"),
@@ -43,8 +43,3 @@ let package = Package(
     ]
 )
 ```
-
-###  Using FeatherService
-
-See the `FeatherServiceTests` target for a basic service implementation.
-

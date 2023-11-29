@@ -1,9 +1,16 @@
+//
+//  FeatherOpenAPISpecVaporTests.swift
+//  FeatherOpenAPISpecVapor
+//
+//  Created by Tibor Bödecs on 23/11/2023.
+//
+
 import Foundation
 import XCTest
 import OpenAPIRuntime
 import HTTPTypes
 import FeatherOpenAPISpec
-import FeatherOpenAPISpecRunnerVapor
+import FeatherOpenAPISpecVapor
 import Vapor
 
 enum SomeError: Error {
@@ -16,7 +23,7 @@ struct Todo: Codable {
 
 extension Todo: Content {}
 
-final class FeatherOpenAPISpecRunnerVaporTests: XCTestCase {
+final class FeatherOpenAPISpecVaporTests: XCTestCase {
 
     func other() async throws {
         throw SomeError.foo
@@ -44,12 +51,12 @@ final class FeatherOpenAPISpecRunnerVaporTests: XCTestCase {
             Path("todos")
             Header(.contentType, "application/json")
             Body(body)
-            Expectation(.ok)
-            Expectation { response, body in
+            Expect(.ok)
+            Expect { response, body in
                 var buffer = ByteBuffer()
                 switch body.length {
                 case .known(let value):
-                    try await body.collect(upTo: value, into: &buffer)
+                    try await body.collect(upTo: Int(value), into: &buffer)
                 case .unknown:
                     for try await chunk in body {
                         buffer.writeBytes(chunk)
