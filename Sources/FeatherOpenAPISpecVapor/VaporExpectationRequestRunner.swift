@@ -31,7 +31,7 @@ public struct VaporExpectationRequestRunner: SpecRunner {
         var reqBuffer = ByteBuffer()
         switch body.length {
         case .known(let value):
-            try await body.collect(upTo: value, into: &reqBuffer)
+            try await body.collect(upTo: Int(value), into: &reqBuffer)
         case .unknown:
             for try await chunk in body {
                 reqBuffer.writeBytes(chunk)
