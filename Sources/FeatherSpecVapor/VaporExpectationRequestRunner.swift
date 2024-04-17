@@ -1,6 +1,6 @@
 //
 //  VaporExpectationRequestRunner.swift
-//  FeatherOpenAPISpecVapor
+//  FeatherSpecVapor
 //
 //  Created by Tibor Bödecs on 23/11/2023.
 //
@@ -8,7 +8,7 @@
 import OpenAPIRuntime
 import HTTPTypes
 import Vapor
-import FeatherOpenAPISpec
+import FeatherSpec
 import XCTVapor
 
 public struct VaporExpectationRequestRunner: SpecRunner {
@@ -39,11 +39,10 @@ public struct VaporExpectationRequestRunner: SpecRunner {
         }
 
         var result: (response: HTTPResponse, body: HTTPBody)!
-
         try app.test(
-            .init(req.method),
+            .init(rawValue: req.method.rawValue),
             req.path ?? "",
-            headers: .init(req.headerFields),
+            headers: .init(req.headerFields.toHTTPHeaders()),
             body: reqBuffer,
             file: #file,
             line: #line,
@@ -54,12 +53,32 @@ public struct VaporExpectationRequestRunner: SpecRunner {
                         code: Int(res.status.code),
                         reasonPhrase: res.status.reasonPhrase
                     ),
-                    headerFields: .init(res.headers)
+                    headerFields: .init(res.headers.toHTTPFields())
                 )
                 let body = HTTPBody(.init(buffer: res.body))
                 result = (response: response, body: body)
             }
         )
         return result
+    }
+}
+
+extension HTTPFields {
+    func toHTTPHeaders() -> [(String, String)] {
+        var headers = [(String, String)]()
+        for index in self.indices {
+            headers.append((self[index].name.rawName, self[index].value))
+        }
+        return headers
+    }
+}
+
+extension HTTPHeaders {
+    func toHTTPFields() -> HTTPFields {
+        var fields = HTTPFields()
+        for index in self.indices {
+            fields.append(HTTPField(name: HTTPField.Name(self[index].name)! , value: self[index].value))
+        }
+        return fields
     }
 }

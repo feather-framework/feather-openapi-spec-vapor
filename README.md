@@ -1,6 +1,6 @@
-# Feather OpenAPI Spec Vapor
+# Feather Spec Vapor
 
-The `FeatherOpenAPISpecVapor` library provides a Vapor runtime for the Feather OpenAPI Spec tool.
+The `FeatherSpecVapor` library provides a Vapor runtime for the Feather Spec tool.
 
 ## Getting started
 
@@ -13,16 +13,16 @@ Use at your own risk.
 To add a dependency on the package, declare it in your `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/feather-framework/feather-openapi-spec-vapor", .upToNextMinor(from: "0.2.0")),
+.package(url: "https://github.com/feather-framework/feather-spec-vapor", .upToNextMinor(from: "0.3.0")),
 ```
 
-and to your application target, add `FeatherOpenAPISpecVapor` to your dependencies:
+and to your application target, add `FeatherSpecVapor` to your dependencies:
 
 ```swift
-.product(name: "FeatherOpenAPISpecVapor", package: "feather-openapi-spec-vapor")
+.product(name: "FeatherSpecVapor", package: "feather-spec-vapor")
 ```
 
-Example `Package.swift` file with `FeatherOpenAPISpecVapor` as a dependency:
+Example `Package.swift` file with `FeatherSpecVapor` as a dependency:
 
 ```swift
 // swift-tools-version:5.9
@@ -31,11 +31,11 @@ import PackageDescription
 let package = Package(
     name: "my-application",
     dependencies: [
-        .package(url: "https://github.com/feather-framework/feather-openapi-spec-vapor", .upToNextMinor(from: "0.2.0")),
+        .package(url: "https://github.com/feather-framework/feather-spec-vapor", .upToNextMinor(from: "0.3.0")),
     ],
     targets: [
         .target(name: "MyApplication", dependencies: [
-            .product(name: "FeatherOpenAPISpecVapor", package: "feather-openapi-spec-vapor")
+            .product(name: "FeatherSpecVapor", package: "feather-spec-vapor")
         ]),
         .testTarget(name: "MyApplicationTests", dependencies: [
             .target(name: "MyApplication"),

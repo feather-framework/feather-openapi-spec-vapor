@@ -1,6 +1,6 @@
 //
-//  FeatherOpenAPISpecVaporTests.swift
-//  FeatherOpenAPISpecVapor
+//  FeatherSpecVaporTests.swift
+//  FeatherSpecVapor
 //
 //  Created by Tibor Bödecs on 23/11/2023.
 //
@@ -9,8 +9,8 @@ import Foundation
 import XCTest
 import OpenAPIRuntime
 import HTTPTypes
-import FeatherOpenAPISpec
-import FeatherOpenAPISpecVapor
+import FeatherSpec
+import FeatherSpecVapor
 import Vapor
 
 enum SomeError: Error {
@@ -23,7 +23,7 @@ struct Todo: Codable {
 
 extension Todo: Content {}
 
-final class FeatherOpenAPISpecVaporTests: XCTestCase {
+final class FeatherSpecVaporTests: XCTestCase {
 
     func other() async throws {
         throw SomeError.foo
