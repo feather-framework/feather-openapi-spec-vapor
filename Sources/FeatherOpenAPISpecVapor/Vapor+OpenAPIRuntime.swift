@@ -1,6 +1,6 @@
 //
 //  Vapor+OpenAPIRuntime.swift
-//  FeatherOpenAPISpecVapor
+//  FeatherSpecVapor
 //
 //  Created by Tibor Bödecs on 23/11/2023.
 //

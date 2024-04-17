@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "feather-openapi-spec-vapor",
+    name: "feather-spec-vapor",
     platforms: [
         .macOS(.v13),
         .iOS(.v16),
@@ -11,20 +11,20 @@ let package = Package(
         .visionOS(.v1),
     ],
     products: [
-        .library(name: "FeatherOpenAPISpecVapor", targets: ["FeatherOpenAPISpecVapor"]),
+        .library(name: "FeatherSpecVapor", targets: ["FeatherSpecVapor"]),
     ],
     dependencies: [
         .package(url: "https://github.com/vapor/vapor", from: "4.87.0"),
-        .package(url: "https://github.com/feather-framework/feather-openapi-spec", .upToNextMinor(from: "0.2.0")),
+        .package(url: "https://github.com/feather-framework/feather-spec", .upToNextMinor(from: "0.3.0")),
         
     ],
     targets: [
-        .target(name: "FeatherOpenAPISpecVapor", dependencies: [
-            .product(name: "FeatherOpenAPISpec", package: "feather-openapi-spec"),
+        .target(name: "FeatherSpecVapor", dependencies: [
+            .product(name: "FeatherSpec", package: "feather-spec"),
             .product(name: "XCTVapor", package: "vapor"),
         ]),
-        .testTarget(name: "FeatherOpenAPISpecVaporTests", dependencies: [
-            .target(name: "FeatherOpenAPISpecVapor")
+        .testTarget(name: "FeatherSpecVaporTests", dependencies: [
+            .target(name: "FeatherSpecVapor")
         ]),
     ]
 )
