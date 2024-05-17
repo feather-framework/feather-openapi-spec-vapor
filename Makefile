@@ -13,5 +13,16 @@ test-with-coverage:
 clean:
 	rm -rf .build
 
+check:
+	./scripts/run-checks.sh
+
 format:
-	swift-format -i -r ./Sources && swift-format -i -r ./Tests
+	./scripts/run-swift-format.sh --fix
+	
+doc:
+	swift package --allow-writing-to-directory ./docs \
+    generate-documentation --target FeatherSpecVapor \
+    --disable-indexing \
+    --transform-for-static-hosting \
+    --hosting-base-path feather-spec-vapor \
+	--output-path ./docs
